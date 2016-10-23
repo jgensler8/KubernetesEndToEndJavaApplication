@@ -1,0 +1,29 @@
+language: docker
+
+script:
+  - echo "starting"
+  - kubectl version
+
+# deploy:
+#   provider: npm
+#   email: foo@bar.com
+#   api_key:
+#     secure: {Insert deploy key here}
+#   on:
+#     tags: true
+#     repo: ktyacke/travis-node-example
+#     all_branches: true
+
+# notifications:
+#   email:
+#     recipients:
+#       - foo@bar.com
+#     on_success: always
+#     on_failure: always
+#
+#   slack:
+#     rooms:
+#       - secure: {Insert Slack key here}
+#     on_success: always
+#     on_failure: always
+#     on_start: always
