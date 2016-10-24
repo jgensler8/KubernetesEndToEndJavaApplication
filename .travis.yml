@@ -1,14 +1,14 @@
 language: docker
 
-install:
-- mvn compile
+# install:
+# - mvn compile
 
 script:
 - echo "Building Application"
 - mvn package
 - echo "Building Docker Container"
 - printenv
-- docker build -t  .
+- docker build --label CSV_URL="${GIT_URL}" --label COMMIT="${GIT_COMMIT}" -t "192.168.99.102:5001/${JOB_NAME}:${BUILD_ID}" .
 
 after_script:
 - echo "Pushing Container to Registry"
