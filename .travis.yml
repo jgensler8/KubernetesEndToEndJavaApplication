@@ -1,29 +1,20 @@
 language: docker
 
+install:
+- mvn compile
+
 script:
-  - echo "starting"
-  - kubectl version
+- echo "Building Application"
+- mvn package
+- echo "Building Docker Container"
+- docker build
 
-# deploy:
-#   provider: npm
-#   email: foo@bar.com
-#   api_key:
-#     secure: {Insert deploy key here}
-#   on:
-#     tags: true
-#     repo: ktyacke/travis-node-example
-#     all_branches: true
+after_script:
+- echo "Pushing Container to Registry"
+- echo "docker push"
 
-# notifications:
-#   email:
-#     recipients:
-#       - foo@bar.com
-#     on_success: always
-#     on_failure: always
-#
-#   slack:
-#     rooms:
-#       - secure: {Insert Slack key here}
-#     on_success: always
-#     on_failure: always
-#     on_start: always
+before_deploy:
+- echo "PreDeployment Version"
+- kubectl version
+deploy:
+- kubectl version
