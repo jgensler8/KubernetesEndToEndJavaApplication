@@ -1,1 +1,1 @@
-asdf
+Sample Java Application
