@@ -12,7 +12,7 @@ script:
 
 after_script:
 - echo "Pushing Container to Registry"
-- echo "docker push"
+- docker push "192.168.99.102:5001/${JOB_NAME}:${BUILD_ID}"
 
 before_deploy:
 - echo "PreDeployment Version"
