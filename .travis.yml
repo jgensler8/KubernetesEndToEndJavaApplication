@@ -7,7 +7,8 @@ script:
 - echo "Building Application"
 - mvn package
 - echo "Building Docker Container"
-- docker build
+- printenv
+- docker build -t  .
 
 after_script:
 - echo "Pushing Container to Registry"
