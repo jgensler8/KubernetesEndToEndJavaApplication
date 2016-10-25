@@ -18,4 +18,4 @@ before_deploy:
 - echo "PreDeployment Version"
 - kubectl version
 deploy:
-- kubectl create -f ./java-application.yml
+- kubectl apply -f ./java-application.yml
