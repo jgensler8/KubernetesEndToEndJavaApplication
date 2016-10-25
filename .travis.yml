@@ -9,11 +9,13 @@ script:
 - echo "Building Docker Container"
 - printenv
 - docker build --label CSV_URL="${GIT_URL}" --label COMMIT="${GIT_COMMIT}" -t "localhost:5001/docker/${JOB_NAME}:${BUILD_ID}" .
+- docker tag "localhost:5001/docker/${JOB_NAME}:${BUILD_ID}" "localhost:5001/docker/${JOB_NAME}:latest"
 - echo "Pushing Container to Registry"
 - docker push "localhost:5001/docker/${JOB_NAME}:${BUILD_ID}"
+- docker push "localhost:5001/docker/${JOB_NAME}:latest"
 
 before_deploy:
 - echo "PreDeployment Version"
 - kubectl version
 deploy:
-- kubectl version
+- kubectl -f ./java-application.yml

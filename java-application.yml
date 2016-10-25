@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: team-1
+  name: my-nginx
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: my-java-app
+    spec:
+      containers:
+      - name: my-java-app
+        image: localhost/docker/myproject:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          hostPort: 8089
