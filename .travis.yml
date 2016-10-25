@@ -8,9 +8,9 @@ script:
 - mvn package
 - echo "Building Docker Container"
 - printenv
-- docker build --label CSV_URL="${GIT_URL}" --label COMMIT="${GIT_COMMIT}" -t "192.168.99.100:5001/docker/${JOB_NAME}:${BUILD_ID}" .
+- docker build --label CSV_URL="${GIT_URL}" --label COMMIT="${GIT_COMMIT}" -t "localhost:5001/docker/${JOB_NAME}:${BUILD_ID}" .
 - echo "Pushing Container to Registry"
-- docker push "192.168.99.100:5001/docker/${JOB_NAME}:${BUILD_ID}"
+- docker push "localhost:5001/docker/${JOB_NAME}:${BUILD_ID}"
 
 before_deploy:
 - echo "PreDeployment Version"
