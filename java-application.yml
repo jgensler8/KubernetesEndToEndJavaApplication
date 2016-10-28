@@ -23,4 +23,5 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-          hostPort: 8090
+          # Can't have a host port because we have one host :)
+          # hostPort: 8090
