@@ -18,4 +18,9 @@ before_deploy:
 - echo "PreDeployment Version"
 - kubectl version
 deploy:
+- echo "kubectl apply"
 - kubectl apply -f ./java-application.yml
+- echo "Updating image in deployment to localhost/docker/myproject:${BUILD_ID}"
+- kubectl set image deployment/my-java-app localhost/docker/myproject:${BUILD_ID}
+- echo "Rolling out update"
+- kubectl rollout status deployment/my-java-app

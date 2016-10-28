@@ -9,7 +9,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   namespace: team-1
-  name: my-nginx
+  name: my-java-app
 spec:
   replicas: 2
   template:
@@ -23,4 +23,4 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-          hostPort: 8089
+          hostPort: 8090
