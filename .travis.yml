@@ -25,7 +25,7 @@ deploy:
 
 # However, the following code won't work the first time we run this plan...
 - echo "Updating image in deployment to localhost:5001/docker/${JOB_NAME}:${BUILD_ID}"
-- kubectl set image deployment/my-java-app ${JOB_NAME}=localhost:5001/docker/${JOB_NAME}:${BUILD_ID} --namespace team-1 --record
+- kubectl set image deployment/my-java-app my-java-app=localhost:5001/docker/${JOB_NAME}:${BUILD_ID} --namespace team-1 --record
 - echo "Rolling out update"
 - kubectl rollout status deployment/my-java-app --namespace team-1
 - echo "Showing rollout history"
