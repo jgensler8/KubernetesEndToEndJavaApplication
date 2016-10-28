@@ -18,9 +18,15 @@ before_deploy:
 - echo "PreDeployment Version"
 - kubectl version
 deploy:
+# We can't really do an apply unless we template out this file. However, this
+# would work very well for the *first* deployment
 - echo "kubectl apply"
-- kubectl apply -f ./java-application.yml
-- echo "Updating image in deployment to localhost/docker/${JOB_NAME}:${BUILD_ID}"
-- kubectl set image deployment/my-java-app localhost/docker/${JOB_NAME}:${BUILD_ID}
+- kubectl apply -f ./java-application.yml --record
+
+# However, the following code won't work the first time we run this plan...
+- echo "Updating image in deployment to localhost:5001/docker/${JOB_NAME}:${BUILD_ID}"
+- kubectl set image deployment/my-java-app ${JOB_NAME}=localhost:5001/docker/${JOB_NAME}:${BUILD_ID} --namespace team-1 --record
 - echo "Rolling out update"
-- kubectl rollout status deployment/my-java-app
+- kubectl rollout status deployment/my-java-app --namespace team-1
+- echo "Showing rollout history"
+- kubectl rollout history deployment/my-java-app --namespace team-1

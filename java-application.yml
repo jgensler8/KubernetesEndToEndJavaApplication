@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: my-java-app
-        image: localhost/docker/myproject:latest
+        image: localhost:5001/docker/myproject:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
