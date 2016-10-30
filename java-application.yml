@@ -41,3 +41,5 @@ spec:
   - name: message-of-the-day
     port: 9090
     targetPort: 8080
+    nodePort: 30099
+  type: NodePort
